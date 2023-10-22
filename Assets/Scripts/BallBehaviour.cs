@@ -9,8 +9,23 @@ public class BallBehaviour : MonoBehaviour
 
     private void Update()
     {
-        Vector3 axis = new Vector3 (XRotation, YRotation, ZRotation);
+        RotateBalls();
+        ResetBalls(); 
+    }
+
+    private void RotateBalls()
+    {
+        Vector3 axis = new Vector3(XRotation, YRotation, ZRotation);
         transform.RotateAround(Vector3.zero, axis, DegreesPerSecond * Time.deltaTime);
         Debug.DrawRay(Vector3.zero, axis, Color.yellow, .5f);
+        YRotation += Time.deltaTime * 5f;
+    }
+
+    private void ResetBalls()
+    {
+        if(YRotation > 100f)
+        {
+            YRotation = 0f;
+        }
     }
 }
